@@ -1,5 +1,6 @@
 
-
+const listContainer = document.createElement("li");
+const routesContainer = document.getElementById("routesContainer");
 
 function addRoute(){
     //  Getting values from the user to add the route
@@ -13,19 +14,14 @@ function addRoute(){
     if(!startPoint||!destination||!routeName||!description){
         alert("Please fill all the required fields ")
     }else{
-
-   // Creating  list  to display the route
-   const routesContainer = document.getElementById("routesContainer");
-   const listContainer = document.createElement("li");
-   
    // Formatting the route details
    listContainer.innerHTML = `
        <strong>Route Name:</strong> ${routeName} <br>
        <strong>Starting Point:</strong> ${startPoint} <br>
        <strong>Destination:</strong> ${destination} <br>
        <strong>Description:</strong> ${description}
-       <Button id ="editButton">Edit</Button>
-        <Button id="deleteButton">Delete</Button><br>
+       <Button id ="editButton" onclick="">Edit</Button>
+        <Button id="deleteButton" onclick="addRoute">Delete</Button><br>
     <strong>-----------------------------------------------------------------------------------------------------------</strong>
    `;
    
@@ -40,4 +36,6 @@ function addRoute(){
    
    console.log("Route added successfully");
     }
+
 }
+

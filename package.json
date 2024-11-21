@@ -1,0 +1,17 @@
+{
+  "name": "infosystemprogramming",
+  "version": "1.0.0",
+  "description": "-----------------------------------------------------------------------------------**Best Routes**--------------------------------------------------------------------------------------\r **The main objective of this project is to demonstrate CRUD operations Using HTML and JavaScript**",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.11.4"
+  }
+}

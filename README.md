@@ -14,3 +14,5 @@
 **Read**: User can see the routes in order of list which have been added previously.
 **Update**: User can edit the name and description of an existing route.
 **Delete**: User can remove a route from the list
+
+Installed mysql package to connect to mysql
