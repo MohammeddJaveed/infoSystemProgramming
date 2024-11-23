@@ -1,41 +1,65 @@
 
-const listContainer = document.createElement("li");
-const routesContainer = document.getElementById("routesContainer");
 
-function addRoute(){
-    //  Getting values from the user to add the route
-    const startPoint = document.getElementById("Starting_Point").value;
-    const destination = document.getElementById("destination").value;
-    const routeName = document.getElementById("routeName").value;
-    const description = document.getElementById("routeDescription").value;
+function fetchRoutes() {
+    fetch('http://localhost:3000/bus')  
+        .then(response => response.json())
+        .then(data => {
+            const routesContainer = document.getElementById('routesContainer');
+            routesContainer.innerHTML = '';  
 
-
-    //  Checking all the fields are properly filled
-    if(!startPoint||!destination||!routeName||!description){
-        alert("Please fill all the required fields ")
-    }else{
-   // Formatting the route details
-   listContainer.innerHTML = `
-       <strong>Route Name:</strong> ${routeName} <br>
-       <strong>Starting Point:</strong> ${startPoint} <br>
-       <strong>Destination:</strong> ${destination} <br>
-       <strong>Description:</strong> ${description}
-       <Button id ="editButton" onclick="">Edit</Button>
-        <Button id="deleteButton" onclick="addRoute">Delete</Button><br>
-    <strong>-----------------------------------------------------------------------------------------------------------</strong>
-   `;
-   
-   // Adding the new route to the list
-   routesContainer.appendChild(listContainer);
-
-   // To Clear field
-   document.getElementById("Starting_Point").value = '';
-   document.getElementById("destination").value = '';
-   document.getElementById("routeName").value = '';
-   document.getElementById("routeDescription").value = '';
-   
-   console.log("Route added successfully");
-    }
-
+            
+            data.forEach(route => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <strong>Route Name:</strong> ${route.route_name} <br>
+                    <strong>Starting Point:</strong> ${route.starting_point} <br>
+                    <strong>Destination:</strong> ${route.destination} <br>
+                    <strong>Description:</strong> ${route.description}
+                `;
+                routesContainer.appendChild(listItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching routes:', error);
+        });
 }
 
+function searchRoutes() {
+    const starting_point = document.getElementById('searchStart').value;
+    const destination = document.getElementById('searchDestination').value;
+
+   
+    if (!starting_point || !destination) {
+        alert('Please enter both starting point and destination.');
+        return;
+    }
+
+    fetch(`http://localhost:3000/bus/search?starting_point=${encodeURIComponent(starting_point)}&destination=${encodeURIComponent(destination)}`)
+        .then(response => response.json())
+        .then(data => {
+            const routesContainer = document.getElementById('routesContainer');
+            routesContainer.innerHTML = ''; 
+
+            if (data.length === 0) {
+                routesContainer.innerHTML = '<li>No routes found for the given search.</li>';
+            } else {
+                
+                data.forEach(route => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `
+                        <strong>Route Name:</strong> ${route.route_name || 'N/A'} <br>
+                        <strong>Starting Point:</strong> ${route.route_name || 'N/A'} <br>
+                        <strong>Destination:</strong> ${route.destination || 'N/A'} <br>
+                        <strong>Description:</strong> ${route.description || 'N/A'}
+                    `;
+                    routesContainer.appendChild(listItem);
+                });
+            }
+        })
+        .catch(error => {
+            console.error('Error searching routes:', error);
+        });
+}
+
+
+document.addEventListener('DOMContentLoaded', fetchRoutes);

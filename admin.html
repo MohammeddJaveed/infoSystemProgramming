@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Add New Route</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Reuse the same CSS -->
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar">
+        <div class="logo">
+            <h1>Best Bus Routes</h1>
+        </div>
+        <nav class="menu">
+            <a href="index.html">Home</a> <!-- Link back to the main page -->
+            <a href="admin.html">Admin</a>
+        </nav>
+    </header>
+    <section id="routes" class="content">
+        <div id="routesContainer" class="routes"></div>
+    </section>
+
+    <!-- Admin Section -->
+    <section id="admin" class="content">
+        <h3>Admin: Add New Route</h3>
+        <div class="form-container">
+            <input type="text" id="starting_point" placeholder="Starting Point">
+            <input type="text" id="destination" placeholder="Destination">
+            <input type="text" id="route_name" placeholder="Route Name">
+            <textarea id="description" rows="3" placeholder="Route Description"></textarea>
+            <button onclick="addRoute()">Add Route</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Best Bus Routes. All Rights Reserved.</p>
+    </footer>
+
+    <script src="admin.js"></script> <!-- Use a separate JS file for admin functionality -->
+</body>
+</html>
