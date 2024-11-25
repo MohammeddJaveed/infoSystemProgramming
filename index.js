@@ -103,8 +103,40 @@ app.get('/bus/search', (req, res) => {
         }
     });
 });
+ app.put('/bus/update/:id',(req, res) => {
+    const { id } = req.params; 
+    const { route_name, starting_point, destination, description } = req.body;
+    if (!route_name || !starting_point || !destination || !description) {
+        return res.status(400).json({ error: 'All fields are required Please make sure to Fill all the details' });
+    }
+    const connection = mysql.createConnection(mysqlConnection);
+    const query = `
+        UPDATE Bus 
+        SET route_name = ?, starting_point = ?, destination = ?, description = ? 
+        WHERE id = ?`;
+        connection.connect((err) => {
+         if (err) {
+          return res.status(500).json({ error: 'Database connection failed' });
+            } else {
+                connection.query(
+                 query,
+                 [route_name, starting_point, destination, description, id],
+                (err, results) => {
+               if (err) {
+                      return res.status(500).json({ error: 'Query execution failed' });
+                  } else if (results.affectedRows === 0) {
+                     return res.status(404).json({ error: 'Route not found' });
+                     } else {
+                       return res.status(200).json({ message: 'Route updated successfully!' });
+                        }
+                    }
+                );
+                connection.end();
+            }
 
-
+        });
+    });
+ 
 
 const PORT = 5500;
 app.listen(PORT, () => {

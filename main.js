@@ -108,8 +108,7 @@ async function addBusRoute() {
         description: description
     };
 
-    try {
-        
+    try {   
         const response = await fetch('http://localhost:5500/bus/add', {
             method: 'POST',
             headers: {
@@ -117,7 +116,6 @@ async function addBusRoute() {
             },
             body: JSON.stringify(busData)
         });
-
         if (response.ok) {
             const result = await response.json();
             alert('Bus route added successfully!');
@@ -135,7 +133,5 @@ async function addBusRoute() {
         alert('An error occurred while adding the bus route.');
     }
 }
-
-  
 
 document.addEventListener('DOMContentLoaded', fetchRoutes);
