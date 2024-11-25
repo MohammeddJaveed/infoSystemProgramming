@@ -80,7 +80,6 @@ app.post('/bus/add', (req, res) => {
 app.get('/bus/search', (req, res) => {
     const { starting_point, destination } = req.query;
     
-    // Validate query parameters
     if (!starting_point || !destination) {
         return res.status(400).json({ error: 'Starting Point and Destination are required' });
     }
@@ -136,6 +135,28 @@ app.get('/bus/search', (req, res) => {
 
         });
     });
+    app.delete('/bus/delete/:id', (req, res) => {
+        const { id } = req.params; 
+        const connection = mysql.createConnection(mysqlConnection);
+        const query = 'DELETE FROM Bus WHERE id = ?';
+        connection.connect((err) => {
+            if (err) {
+                return res.status(500).json({ error: 'Database connection failed' });
+            } else {
+                connection.query(query, [id], (err, results) => {
+                    if (err) {
+                        return res.status(500).json({ error: 'Query execution failed' });
+                    } else if (results.affectedRows === 0) {
+                        return res.status(404).json({ error: 'Route not found' });
+                    } else {
+                        return res.status(200).json({ message: 'Route deleted successfully!' });
+                    }
+                });
+                connection.end();
+            }
+        });
+    });
+    
  
 
 const PORT = 5500;
