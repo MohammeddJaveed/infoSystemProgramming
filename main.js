@@ -133,5 +133,24 @@ async function addBusRoute() {
         alert('An error occurred while adding the bus route.');
     }
 }
+async function deleteRoute(routeId) {
+    if (confirm('Are you sure to delete?')) {
+        try {
+            const response = await fetch(`http://localhost:5500/bus/delete/${routeId}`, {
+                method: 'DELETE',
+            });
+
+        if (response.ok) {
+             alert('Route deleted successfully!');
+                fetchRoutesForAdmin();
+          } else {
+               alert('Failed to delete the route.');
+         }
+        } catch (error) {
+            console.error('Error deleting route:', error);
+            alert('An error occurred while deleting the route.');
+        }
+    }
+}
 
 document.addEventListener('DOMContentLoaded', fetchRoutes);
