@@ -91,19 +91,16 @@ function searchRoutes() {
 async function addBusRoute() {
     console.log('Form Submission initiated');
 
-    // Get input values from your form or input fields
     const route_name = document.getElementById('route_name').value;
     const startingPoint = document.getElementById('starting_point').value;
-    const destination = document.getElementById('destination').value;  // Corrected this line
+    const destination = document.getElementById('destination').value; 
     const description = document.getElementById('description').value;
 
-    // Validate the input fields
     if (!route_name || !startingPoint || !destination || !description) {
         alert('All fields are required!');
         return;
     }
 
-    // Create the payload
     const busData = {
         route_name: route_name,
         starting_point: startingPoint,
@@ -112,7 +109,7 @@ async function addBusRoute() {
     };
 
     try {
-        // Send the POST request to the backend
+        
         const response = await fetch('http://localhost:5500/bus/add', {
             method: 'POST',
             headers: {
@@ -121,11 +118,14 @@ async function addBusRoute() {
             body: JSON.stringify(busData)
         });
 
-        // Handle the response
         if (response.ok) {
             const result = await response.json();
             alert('Bus route added successfully!');
             console.log('Response:', result);
+            document.getElementById('route_name').value = '';
+            document.getElementById('starting_point').value = '';
+            document.getElementById('destination').value = '';
+            document.getElementById('description').value = '';
         } else {
             const errorData = await response.json();
             alert(`Error: ${errorData.error}`);
