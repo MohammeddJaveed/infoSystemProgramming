@@ -17,4 +17,7 @@
 **Delete**: User can remove a route from the list
 **Search**: User can enter start point and destination to find the route name and description of travel.
 
+
 Installed mysql package to connect to mysql
+
+Used workbench to create databse and added two dummy entries
