@@ -15,7 +15,7 @@ function fetchRoutes() {
                     <strong>Starting Point:</strong> ${route.starting_point} <br>
                     <strong>Destination:</strong> ${route.destination} <br>
                     <strong>Description:</strong> ${route.description} 
-                    <button onclick="editRoute(${route.id})">Edit</button>
+                    <button onclick="editRoute(${route.id}, '${route.route_name}', '${route.starting_point}', '${route.destination}', '${route.description}')">Edit</button>
                     <button onclick="deleteRoute(${route.id})">Delete</button>
                 `;
                 routesContainer.appendChild(listItem);
