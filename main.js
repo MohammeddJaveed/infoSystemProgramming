@@ -1,7 +1,7 @@
 
 
 function fetchRoutes() {
-    fetch('http://localhost:3000/bus')  
+    fetch('http://localhost:5500/bus')  
         .then(response => response.json())
         .then(data => {
             const routesContainer = document.getElementById('routesContainer');
@@ -34,7 +34,7 @@ function searchRoutes() {
         return;
     }
 
-    fetch(`http://localhost:3000/bus/search?starting_point=${encodeURIComponent(starting_point)}&destination=${encodeURIComponent(destination)}`)
+    fetch(`http://localhost:5500/bus/search?starting_point=${encodeURIComponent(starting_point)}&destination=${encodeURIComponent(destination)}`)
         .then(response => response.json())
         .then(data => {
             const routesContainer = document.getElementById('routesContainer');
@@ -61,5 +61,54 @@ function searchRoutes() {
         });
 }
 
+async function addBusRoute() {
+    console.log('Form Submission initiated');
+
+    // Get input values from your form or input fields
+    const route_name = document.getElementById('route_name').value;
+    const startingPoint = document.getElementById('starting_point').value;
+    const destination = document.getElementById('destination').value;  // Corrected this line
+    const description = document.getElementById('description').value;
+
+    // Validate the input fields
+    if (!route_name || !startingPoint || !destination || !description) {
+        alert('All fields are required!');
+        return;
+    }
+
+    // Create the payload
+    const busData = {
+        route_name: route_name,
+        starting_point: startingPoint,
+        destination: destination,
+        description: description
+    };
+
+    try {
+        // Send the POST request to the backend
+        const response = await fetch('http://localhost:5500/bus/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(busData)
+        });
+
+        // Handle the response
+        if (response.ok) {
+            const result = await response.json();
+            alert('Bus route added successfully!');
+            console.log('Response:', result);
+        } else {
+            const errorData = await response.json();
+            alert(`Error: ${errorData.error}`);
+        }
+    } catch (error) {
+        console.error('Error adding bus route:', error);
+        alert('An error occurred while adding the bus route.');
+    }
+}
+
+  
 
 document.addEventListener('DOMContentLoaded', fetchRoutes);

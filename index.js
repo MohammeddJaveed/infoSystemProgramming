@@ -49,6 +49,34 @@ app.get('/bus', (req, res) => {
     });
 });
 
+app.post('/bus/add', (req, res) => {
+    const { route_name, starting_point, destination, description } = req.body;
+
+    // Validate the input
+    if (!route_name || !starting_point || !destination || !description) {
+        return res.status(400).json({ error: 'All fields are required (route_name, starting_point, destination, description)' });
+    }
+
+    const connection = mysql.createConnection(mysqlConnection);
+    const query = 'INSERT INTO Bus (route_name, starting_point, destination, description) VALUES (?, ?, ?, ?)';
+
+    connection.connect((err) => {
+        if (err) {
+            return res.status(500).json({ error: 'Database connection failed' });
+        } else {
+            connection.query(query, [route_name, starting_point, destination, description], (err, results) => {
+                if (err) {
+                    return res.status(500).json({ error: 'Query execution failed' });
+                } else {
+                    return res.status(201).json({ message: 'Bus added successfully!', results });
+                }
+                connection.end();
+            });
+        }
+    });
+});
+
+
 app.get('/bus/search', (req, res) => {
     const { starting_point, destination } = req.query;
     
@@ -78,7 +106,7 @@ app.get('/bus/search', (req, res) => {
 
 
 
-const PORT = 3000;
+const PORT = 5500;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

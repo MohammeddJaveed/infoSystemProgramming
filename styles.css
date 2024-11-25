@@ -41,7 +41,7 @@ body {
     text-decoration: underline;
 }
 
-/* Hero Section */
+
 .hero {
     background: url('aibus.webp') no-repeat center center/cover;
     height: 60vh;
@@ -68,7 +68,7 @@ body {
     -webkit-text-stroke: 0.3px yellow;
 }
 
-/* Content Section */
+
 .content {
     padding: 2rem;
     text-align: center;
@@ -116,7 +116,6 @@ body {
     background-color:yellowgreen;
 }
 
-/* Routes List */
 .routes {
     margin-top: 2rem;
     text-align: left;
@@ -149,7 +148,7 @@ body {
     border-bottom: none;
 }
 
-/* Footer */
+
 footer {
     background-color: #001F3F;
     color: white;
