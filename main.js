@@ -14,7 +14,9 @@ function fetchRoutes() {
                     <strong>Route Name:</strong> ${route.route_name} <br>
                     <strong>Starting Point:</strong> ${route.starting_point} <br>
                     <strong>Destination:</strong> ${route.destination} <br>
-                    <strong>Description:</strong> ${route.description}
+                    <strong>Description:</strong> ${route.description} 
+                    <button onclick="editRoute(${route.id})">Edit</button>
+                    <button onclick="deleteRoute(${route.id})">Delete</button>
                 `;
                 routesContainer.appendChild(listItem);
             });
@@ -24,6 +26,31 @@ function fetchRoutes() {
         });
 }
 
+function fetchRoutesForAdmin() {
+    fetch('http://localhost:5500/bus')  
+        .then(response => response.json())
+        .then(data => {
+            const routesContainer = document.getElementById('AdminroutesContainer');
+            routesContainer.innerHTML = '';  
+
+            
+            data.forEach(route => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <strong>Route Name:</strong> ${route.route_name} <br>
+                    <strong>Starting Point:</strong> ${route.starting_point} <br>
+                    <strong>Destination:</strong> ${route.destination} <br>
+                    <strong>Description:</strong> ${route.description} <br>
+                    <button onclick="editRoute(${route.id})">Edit</button>
+                    <button onclick="deleteRoute(${route.id})">Delete</button>
+                `;
+                routesContainer.appendChild(listItem);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching routes:', error);
+        });
+}
 function searchRoutes() {
     const starting_point = document.getElementById('searchStart').value;
     const destination = document.getElementById('searchDestination').value;
