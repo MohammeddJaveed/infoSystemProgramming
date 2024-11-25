@@ -152,5 +152,17 @@ async function deleteRoute(routeId) {
         }
     }
 }
+function editRoute(id, routeName, startingPoint, destination, description) {
+    
+    document.getElementById('route_name').value =routeName;
+    document.getElementById('starting_point').value =startingPoint;
+    document.getElementById('destination').value =destination;
+    document.getElementById('description').value =description;
+
+   
+    const addButton = document.querySelector('button[onclick="addBusRoute()"]');
+    addButton.textContent = 'Update Route';
+    addButton.setAttribute('onclick', `updateRoute(${id})`);
+}
 
 document.addEventListener('DOMContentLoaded', fetchRoutes);
