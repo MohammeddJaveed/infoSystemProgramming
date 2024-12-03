@@ -30,7 +30,7 @@ const mysqlConnection = {
 
 app.get('/bus', (req, res) => {
     const connection = mysql.createConnection(mysqlConnection);
-    const query = 'SELECT * FROM Bus';  // Query to fetch all bus routes
+    const query = 'SELECT * FROM Bus';  
     
     connection.connect((err) => {
         if (err) {
@@ -40,8 +40,8 @@ app.get('/bus', (req, res) => {
                 if (err) {
                     res.status(500).json({ error: 'Query execution failed' });
                 } else {
-                    console.log(results);  // Log the data returned from the database
-                    res.status(200).json(results);  // Send the results back
+                    console.log(results);  
+                    res.status(200).json(results); 
                 }
                 connection.end();
             });
