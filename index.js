@@ -22,13 +22,13 @@ app.get("/", (request, response) => {
 const mysqlConnection = {
     host: 'localhost',        
     user: 'root',    
-    password: 'Javeed1234',
+    password: '7460',
     database: 'BestRoute', 
     port: 3306    
 };
 
 
-app.get('/bus', (req, res) => {
+app.get('/bus/', (req, res) => {
     const connection = mysql.createConnection(mysqlConnection);
     const query = 'SELECT * FROM Bus';  
     
@@ -102,41 +102,52 @@ app.get('/bus/search', (req, res) => {
         }
     });
 });
- app.put('/bus/update/:id',(req, res) => {
-    const { id } = req.params; 
+app.put('/bus/update/:id', (req, res) => {
+    const { id } = req.params;
     const { route_name, starting_point, destination, description } = req.body;
+
     if (!route_name || !starting_point || !destination || !description) {
-        return res.status(400).json({ error: 'All fields are required Please make sure to Fill all the details' });
+        return res
+            .status(400)
+            .json({ error: 'All fields are required. Please fill in all details.' });
     }
+
     const connection = mysql.createConnection(mysqlConnection);
     const query = `
         UPDATE Bus 
         SET route_name = ?, starting_point = ?, destination = ?, description = ? 
         WHERE id = ?`;
-        connection.connect((err) => {
-         if (err) {
-          return res.status(500).json({ error: 'Database connection failed' });
-            } else {
-                connection.query(
-                 query,
-                 [route_name, starting_point, destination, description, id],
-                (err, results) => {
-               if (err) {
-                      return res.status(500).json({ error: 'Query execution failed' });
-                  } else if (results.affectedRows === 0) {
-                     return res.status(404).json({ error: 'Route not found' });
-                     } else {
-                       return res.status(200).json({ message: 'Route updated successfully!' });
-                        }
-                    }
-                );
-                connection.end();
-            }
 
-        });
+    connection.connect((err) => {
+        if (err) {
+            console.error('Database connection failed:', err);
+            return res.status(500).json({ error: 'Database connection failed' });
+        }
+
+        connection.query(
+            query,
+            [route_name, starting_point, destination, description, id],
+            (err, results) => {
+                connection.end(); ed
+
+                if (err) {
+                    console.error('Query execution failed:', err);
+                    return res.status(500).json({ error: 'Query execution failed' });
+                }
+
+                if (results.affectedRows === 0) {
+                    return res.status(404).json({ error: 'Route not found' });
+                }
+
+                return res.status(200).json({ message: 'Route updated successfully!' });
+            }
+        );
     });
+});
+
     app.delete('/bus/delete/:id', (req, res) => {
         const { id } = req.params; 
+        console.log(id);
         const connection = mysql.createConnection(mysqlConnection);
         const query = 'DELETE FROM Bus WHERE id = ?';
         connection.connect((err) => {

@@ -1,4 +1,4 @@
-
+// To show and hide sections 
 function showSection(sectionId) {
     
     const sections = document.querySelectorAll('section');
@@ -150,8 +150,8 @@ async function addBusRoute() {
 
 
 //deleting route
-function deleteRoute(routeId) {
-    fetch(`http://localhost:5500/bus/${routeId}`, {
+function deleteRoute(id) {
+    fetch(`http://localhost:5500/bus/delete/${id}`, {
         method: 'DELETE',
     })
         .then(response => {
@@ -165,14 +165,19 @@ function deleteRoute(routeId) {
         .catch(error => console.error('Error deleting route:', error));
 }
 //editing route
-function editRoute(routeId) {
+function editRoute(id) {
     const newRouteName = prompt('Enter new Route Name:');
     const newStartingPoint = prompt('Enter new Starting Point:');
     const newDestination = prompt('Enter new Destination:');
     const newDescription = prompt('Enter new Description:');
 
-    if (newRouteName && newStartingPoint && newDestination && newDescription) {
-        fetch(`http://localhost:5500/bus/${routeId}`, {
+    if (
+        newRouteName.trim() &&
+        newStartingPoint.trim() &&
+        newDestination.trim() &&
+        newDescription.trim()
+    ) {
+        fetch(`http://localhost:5500/bus/update/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -182,19 +187,25 @@ function editRoute(routeId) {
                 description: newDescription,
             }),
         })
-            .then(response => {
+            .then((response) => {
                 if (response.ok) {
                     alert('Route updated successfully');
-                    fetchAdminRoutes(); // Refresh the admin routes list
+                    fetchAdminRoutes(); 
                 } else {
-                    alert('Failed to update route');
+                    response.json().then((data) => {
+                        alert(data.error || 'Failed to update route');
+                    });
                 }
             })
-            .catch(error => console.error('Error updating route:', error));
+            .catch((error) => {
+                console.error('Error updating route:', error);
+                alert('An error occurred while updating the route');
+            });
     } else {
         alert('All fields are required for editing a route.');
     }
 }
+
 
 
     document.addEventListener('DOMContentLoaded', () => {
