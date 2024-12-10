@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 app.get("/", (request, response) => {
     response.json({
-        info: 'Hello world!'
+        info: 'Check world!'
     });
 });
 
