@@ -13,11 +13,11 @@ app.use(express.json());
 
 app.use(bodyParser.json());
 
-app.get("/", (request, response) => {
-    response.json({
-        info: 'Check world!'
-    });
-});
+// app.get("/", (request, response) => {
+//     response.json({
+//         info: 'Check world!'
+//     });
+// });
 
 
 const mysqlConnection = {
