@@ -5,6 +5,7 @@ const cors = require('cors');
 const path = require('path');
 
 
+
 const app = express();
 app.use(cors());
 app.use(express.static('public'));
@@ -168,6 +169,7 @@ app.put('/bus/update/:id', (req, res) => {
         });
     });
     
+  module.exports = app;
  
 
 const PORT = 5500;

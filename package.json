@@ -1,10 +1,12 @@
 {
   "name": "infosystemprogramming",
   "version": "1.0.0",
-  "description": "-----------------------------------------------------------------------------------**Best Routes**--------------------------------------------------------------------------------------\r **The main objective of this project is to demonstrate CRUD operations Using HTML and JavaScript**",
-  "main": "main.js",
+  "description": "--**Best Routes**-- **The main objective of this project is to demonstrate CRUD operations Using HTML and JavaScript**",
+  "main": "index.js",  
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",  
+    "start": "node index.js"  
   },
   "keywords": [],
   "author": "",
@@ -13,6 +15,16 @@
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "mysql": "^2.18.1",
-    "mysql2": "^3.11.4"
+    "mysql2": "^3.11.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"  
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
