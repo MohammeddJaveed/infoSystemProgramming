@@ -15,11 +15,11 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 const mysqlConnection = {
-    host: 'bestroutedatabse.cnw4kgmcmwfk.eu-north-1.rds.amazonaws.com',
-    user: 'admin',
-    password: '9108107460',
-    database: 'BestRoute',
-    // port: process.env.DB_PORT,
+    host: process.env.DB_HOST,                                        //'bestroutedatabse.cnw4kgmcmwfk.eu-north-1.rds.amazonaws.com',
+    user: process.env.DB_USER,                                                        //'admin',
+    password: process.env.DB_PASSWORD,                                                                      //'9108107460',
+    database:   process.env.DB_NAME,                                                                         //'BestRoute',
+    port: process.env.DB_PORT,
 };
 
 
