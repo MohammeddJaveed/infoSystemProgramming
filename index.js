@@ -122,7 +122,7 @@ app.put('/bus/update/:id', (req, res) => {
             query,
             [route_name, starting_point, destination, description, id],
             (err, results) => {
-                connection.end(); ed
+                connection.end(); 
 
                 if (err) {
                     console.error('Query execution failed:', err);
@@ -164,7 +164,7 @@ app.put('/bus/update/:id', (req, res) => {
     
  
 
-  const PORT = process.env.PORT || 55000;
+  const PORT = process.env.PORT || 5500;
   let server;
   if (require.main === module) {
       server = app.listen(PORT, () => {
