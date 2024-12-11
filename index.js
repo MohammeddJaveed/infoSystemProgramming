@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const cors = require('cors');
 const path = require('path');
+require('dotenv').config();
 
 
 
@@ -14,11 +15,11 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 const mysqlConnection = {
-    host: 'localhost',        
-    user: 'root',    
-    password: '7460',
-    database: 'BestRoute', 
-    port: 3306    
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
 };
 
 
