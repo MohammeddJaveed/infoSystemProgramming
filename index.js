@@ -162,10 +162,13 @@ app.put('/bus/update/:id', (req, res) => {
         });
     });
     
-  module.exports = app;
  
 
-const PORT = 5500;
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+  const PORT = process.env.PORT || 55000;
+  let server;
+  if (require.main === module) {
+      server = app.listen(PORT, () => {
+          console.log(`Server is running on http://localhost:${PORT}`);
+      });
+  }
+  module.exports = {app,server};
