@@ -8,12 +8,12 @@ The **Best Route Project** is a web application that helps users find the most e
 
 - **Route Suggestions**:
   - **User Input** 
-   - Users can enter a starting location and destination into the system, specifying their desired travel points.
-   - The system uses this input to search for the most relevant bus routes that match the provided locations.
+      - Users can enter a starting location and destination into the system, specifying their desired travel points.
+      - The system uses this input to search for the most relevant bus routes that match the provided locations.
 
   - **Route Recommendation**
-   - Based on the data, the program evaluates the available routes and identifies the most efficient ones 
-   - The system then displays these suggested routes to the user, helping them make the best decision for their travel.
+      - Based on the data, the program evaluates the available routes and identifies the most efficient ones 
+      - The system then displays these suggested routes to the user, helping them make the best decision for their travel.
 
 - **Admin Panel**: The application offers a set of CRUD (Create, Read, Update, Delete) operations, enabling admins to maintain and update the route database.
 
