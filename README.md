@@ -34,7 +34,7 @@ The **Best Route Project** is a web application that helps users find the most e
 ### Hosting Website
 - **AWS**: The website was hosted using AWS services. A MySQL database was created on AWS and connected through SQL Workbench. For application hosting, AWS App Runner was used to deploy the app. However, since App Runner is billable, the service was stopped and deleted to cut down on costs.
 
-### Challenges Faced
+## Challenges Faced
 
 - **Writing Test Cases**: Writing unit tests for database interactions and mocking these operations correctly was crucial. Ensuring proper test coverage for all endpoints and handling edge cases, such as invalid data or unauthorized access, required careful planning.
 
@@ -42,7 +42,7 @@ The **Best Route Project** is a web application that helps users find the most e
 
 
 
-### References
+## References
 - **Node js** - Node.js. (2024). Node.js. Available at: https://nodejs.org/ [Accessed 29 Nov. 2024].
 - **MySQL Workbench** - Oracle. (2024). MySQL Workbench. Available at: https://www.mysql.com/products/workbench/ [Accessed 2 Dec. 2024].
 - **Jest** - Facebook. (2024). Jest. Available at: https://jestjs.io/ [Accessed 5 Dec. 2024].
