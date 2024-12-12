@@ -43,7 +43,7 @@ body {
 
 
 .hero {
-    background: url('aibus.webp') no-repeat center center/cover;
+    background: url('assets/aibus.webp') no-repeat center center/cover;
     height: 60vh;
     display: flex;
     align-items: center;

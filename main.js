@@ -104,24 +104,24 @@ function fetchAdminRoutes() {
 // Adding Bus
 async function addBusRoute() {
     console.log('Form Submission initiated');
-
+  
     const route_name = document.getElementById('route_name').value;
     const startingPoint = document.getElementById('starting_point').value;
-    const destination = document.getElementById('destination').value; 
+    const destination = document.getElementById('destination').value;
     const description = document.getElementById('description').value;
-
+  
     if (!route_name || !startingPoint || !destination || !description) {
-        alert('All fields are required!');
-        return;
+      alert('All fields are required!');
+      return;
     }
-
+  
     const busData = {
         route_name: route_name,
         starting_point: startingPoint,
         destination: destination,
         description: description
     };
-
+  
     try {   
         const response = await fetch('http://localhost:5500/bus/add', {
             method: 'POST',
@@ -138,6 +138,7 @@ async function addBusRoute() {
             document.getElementById('starting_point').value = '';
             document.getElementById('destination').value = '';
             document.getElementById('description').value = '';
+            fetchAdminRoutes();
         } else {
             const errorData = await response.json();
             alert(`Error: ${errorData.error}`);

@@ -15,11 +15,11 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 const mysqlConnection = {
-    host: process.env.DB_HOST,                                        //'bestroutedatabse.cnw4kgmcmwfk.eu-north-1.rds.amazonaws.com',
-    user: process.env.DB_USER,                                                        //'admin',
-    password: process.env.DB_PASSWORD,                                                                      //'9108107460',
-    database:   process.env.DB_NAME,                                                                         //'BestRoute',
-    port: process.env.DB_PORT,
+    host: 'localhost',                                        //'bestroutedatabse.cnw4kgmcmwfk.eu-north-1.rds.amazonaws.com',
+    user: 'root',                                                        //'admin',
+    password: '7460',                                                                      //'9108107460',
+    database:  'BestRoute',                                                                         //'BestRoute',
+    port: '3306',
 };
 
 
@@ -110,7 +110,7 @@ app.put('/bus/update/:id', (req, res) => {
     const connection = mysql.createConnection(mysqlConnection);
     const query = `
         UPDATE Bus 
-        SET route_name = ?, starting_point = ?, destination = ?, description = ? 
+         SET route_name = ?, starting_point = ?, destination = ?, description = ? 
         WHERE id = ?`;
 
     connection.connect((err) => {
