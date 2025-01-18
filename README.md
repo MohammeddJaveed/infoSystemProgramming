@@ -18,7 +18,6 @@ The **Best Route Project** is a web application that helps users find the most e
 - **Admin Panel**: The application offers a set of CRUD (Create, Read, Update, Delete) operations, enabling admins to maintain and update the route database.
 
   - **Create**: Admins can add new routes, providing essential details such as the route name, starting point, destination, and description.
-
     - When the form is submitted, the addBusRoute() function in JavaScript is called.
     - The addBusRoute() function gathers the form data (route name, starting point, destination, and description) and prepares it for submission.
     - A POST request is then made to the backend API endpoint /bus/add to add the new bus route.
@@ -68,6 +67,21 @@ The **Best Route Project** is a web application that helps users find the most e
 ### Hosting Website
 
 - **AWS**: The website was hosted using AWS services. A MySQL database was created on AWS and connected through SQL Workbench. For application hosting, AWS App Runner was used to deploy the app. However, since App Runner is billable, the service was stopped and deleted to cut down on costs.
+
+## Enhancement
+
+- **Chatbot Implementation using Chatbase**:
+  - The project was enhanced by integrating an intelligent **chatbot** to assist users in finding routes and handling inquiries.
+  - **Chatbase** was used to train the chatbot, providing it with relevant route-related queries and responses.
+  - The chatbot was integrated into the website to provide real-time assistance, answering user questions about routes and helping them navigate through the system.
+  - **Key Features**:
+    - The chatbot interacts with users via a simple and friendly interface.
+    - It provides details about the project.
+    - It continuously improves by learning from user interactions, making it smarter over time.
+  - **Technologies**:
+    - **Chatbase**: Used for chatbot training and analytics.
+    - **JavaScript**: For integration with the frontend.
+    - **Node.js**: Backend integration to support chatbot responses.
 
 ## Challenges Faced
 
